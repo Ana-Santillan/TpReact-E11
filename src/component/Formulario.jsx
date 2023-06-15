@@ -3,51 +3,32 @@ import { Form, Card, Button } from 'react-bootstrap';
 import Lista from './Lista';
 
 const Formulario = () => {
-    const ListaPeliculasLS = JSON.parse(localStorage.getItem('Peliculas')) || [];
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [categoria, setCategoria] = useState("");
     const [listaNoticias, setListaNoticias] = useState([]);
     const apiKey = "pub_241782e226ccca37315e12e270a9ef6fd4259"
 
-    const traerNoticias = async ()=>{
-        try{
-          //setMostrarSpinner(true);
-          //peticion get
-          const respuesta = await fetch(`https://newsdata.io/api/1/news?apikey=${apiKey}&category=${categoria}`);
-          const dato = await respuesta.json();
-          console.log(dato);
-          setListaNoticias(dato.results);
-          /* console.log(dato[0]);
-          setPersonaje(dato[0]);
-          setMostrarSpinner(false); */
-        } catch (error){
-          console.log(error);
+    const traerNoticias = async () => {
+        try {
+            //setMostrarSpinner(true);
+            //peticion get
+            const respuesta = await fetch(`https://newsdata.io/api/1/news?apikey=${apiKey}&category=${categoria}`);
+            const dato = await respuesta.json();
+            console.log(dato);
+            setListaNoticias(dato.results);
+            /* console.log(dato[0]);
+            setPersonaje(dato[0]);
+            setMostrarSpinner(false); */
+        } catch (error) {
+            console.log(error);
         }
-      }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         traerNoticias();
-        /* let pelicula = {
-            nombre: nombre,
-            descripcion: descripcion,
-            genero: genero == "" ? "Comedia" : genero,
-        }
-        setPeliculas([...listaPeliculas, pelicula])
-        setNombre("")
-        setDescripcion("")
-        setGenero("") */
     }
-
-    const eliminarPelicula = (index) =>{
-        let PeliculasActualizadas = listaPeliculas.filter((pelicula, indexPelicula)=>indexPelicula != index);
-        setPeliculas(PeliculasActualizadas); 
-    }
-
-    /* useEffect(()=>{
-        localStorage.setItem('Peliculas', JSON.stringify(listaPeliculas))
-    },[listaPeliculas]) */
 
     return (
         <>

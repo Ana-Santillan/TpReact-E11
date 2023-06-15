@@ -4,7 +4,7 @@ import "./Elemento.css"
 
 const Elemento = ({ Noticia }) => {
     return (
-        <Col xl={3} lg={4} md={6} className='d-flex flex-fill'>
+        <Col xl={6} lg={4} md={6} className='d-flex flex-fill'>
             <ListGroup.Item className='mt-3 item'>
                 <Card className='text-center Card'>
                     <Card.Header className='titleCard'><h1>{Noticia.title}</h1></Card.Header>
